@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ 
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+
+<div class="jumbotron">
+<div class="row w-100" id="result">
+     
+        <div class="col-md-3">
+            <div class="card border-success mx-sm-1 p-3">
+                <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div>
+                <div class="text-success text-center mt-3"><h4>Eyes</h4></div>
+                <div class="text-success text-center mt-2"><h1>9332</h1></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-danger mx-sm-1 p-3">
+                <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div>
+                <div class="text-danger text-center mt-3"><h4>Hearts</h4></div>
+                <div class="text-danger text-center mt-2"><h1>346</h1></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-warning mx-sm-1 p-3">
+                <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa fa-inbox" aria-hidden="true"></span></div>
+                <div class="text-warning text-center mt-3"><h4>Inbox</h4></div>
+                <div class="text-warning text-center mt-2"><h1>346</h1></div>
+            </div>
+        </div>
+     </div>
+</div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script>
+        data = [
+                {
+                    "clinet_id" : "1",
+                    "app_name" : "aws",
+                    "app_key" : "1234455666"
+                },
+                {
+                    "clinet_id" : "1",
+                    "app_name" : "test",
+                    "app_key" : "22222222"
+
+                }
+            ]
+
+            $(document).ready(function() {
+                getdata(data)
+             c();
+            });    
+        setInterval(() => {
+            getdata(data)
+             c();
+        }, 10000);
+
+        function  getdata(req) {
+            htmldata = ''
+
+            $.ajax({
+                    url: "api/gettoken",
+                    type: "POST",
+                    dataType: "json",
+                    headers: { "Content-Type": "application/json", "cache-control": "no-cache"},
+                    data: JSON.stringify (req),
+                    success: function(data){
+                        reso = data.data
+                       for (let index = 0; index < reso.length; index++) {
+                           htmldata += '<div class="col-md-3"><div class="card border-info mx-sm-1 p-3"> <div class="card border-info shadow text-info p-3 my-card" ><h3 class="c" id="10"></h3></div>'
+                           htmldata +=  '<div class="text-info text-center mt-3"><h4>'+reso[index].app_name +'</h4></div>'
+                          htmldata += '<div class="text-info text-center mt-2"><h1>'+ reso[index].otp +'</h1></div> </div></div>'
+                       }
+                    
+                        $("#result").html(htmldata);
+                    },
+                    error: function(error){
+                        console.log("Error:");
+                        console.log(error);
+                    }
+            });               
+            
+        }
+
+
+        function c(){
+            var n=$('.c').attr('id');
+            var c=n;
+            $('.c').text(c);
+            setInterval(function(){
+                c--;
+                if(c>=0){
+                    $('.c').text(c);
+                }
+                if(c==0){
+                    $('.c').text(n);
+                }
+            },1000);
+        }
+
+        // Loop
+        setInterval(function(){
+            c();
+        },5000);
+    </script>
+</body>
+</html>
