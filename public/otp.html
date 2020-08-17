@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ 
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+
+   
+        <div class="row paddingBottom20">
+            <div class="container col-4">
+                <div class="row">
+                    <h6 class="text-center col-12 mb-0">OTP Information</h6>
+                    <sub class="text-right text-muted col-12"><a href="#" tabindex="-1"><i class="far fa-edit"></i></a></sub>
+                </div>
+                <div class="dropdown-divider mb-3"></div>
+                <div class="form-group row">
+                    <label for="firstName" class="col-4 col-form-label-sm text-right"> OTP:</label> 
+                    <div class="col-8">
+                        <div class="input-group"> 
+                            <input id="otp" name="text" type="text" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script>
+        data = {
+                    "clinet_id" : "1",
+                    "app_name" : "aws",
+                    "app_key" : "1234455666"
+                }
+        
+        $(".btn-info").click(function (e) { 
+            e.preventDefault();
+             var otp = $("#otp").val()
+             data = {
+                    "clinet_id" : "1",
+                    "app_name" : "aws",
+                    "app_key" : "1234455666",
+                    "otp" : otp
+                }
+                verifityOtp(data)
+        });
+        
+        function  verifityOtp(req) {
+            $.ajax({
+                    url: "api/otpverification",
+                    type: "POST",
+                    dataType: "json",
+                    headers: { "Content-Type": "application/json", "cache-control": "no-cache"},
+                    data: JSON.stringify (req),
+                    success: function(data){
+                        alert(data.status)
+                    },
+                    error: function(error){
+                        console.log("Error:");
+                        console.log(error);
+                    }
+            });               
+            
+        }
+
+
+
+    </script>
+</body>
+</html>

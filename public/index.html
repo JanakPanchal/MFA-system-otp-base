@@ -37,6 +37,8 @@
             </div>
         </div>
      </div>
+
+     
 </div>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
@@ -65,7 +67,7 @@
         setInterval(() => {
             getdata(data)
              c();
-        }, 10000);
+        }, 45000);
 
         function  getdata(req) {
             htmldata = ''
@@ -79,7 +81,7 @@
                     success: function(data){
                         reso = data.data
                        for (let index = 0; index < reso.length; index++) {
-                           htmldata += '<div class="col-md-3"><div class="card border-info mx-sm-1 p-3"> <div class="card border-info shadow text-info p-3 my-card" ><h3 class="c" id="10"></h3></div>'
+                           htmldata += '<div class="col-md-3"><div class="card border-info mx-sm-1 p-3"> <div class="card border-info shadow text-info p-3 my-card" ><h3 class="c" id="45"></h3></div>'
                            htmldata +=  '<div class="text-info text-center mt-3"><h4>'+reso[index].app_name +'</h4></div>'
                           htmldata += '<div class="text-info text-center mt-2"><h1>'+ reso[index].otp +'</h1></div> </div></div>'
                        }
@@ -113,7 +115,7 @@
         // Loop
         setInterval(function(){
             c();
-        },5000);
+        },45000);
     </script>
 </body>
 </html>
