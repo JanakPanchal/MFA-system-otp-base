@@ -13,8 +13,7 @@ request
 		"clinet_id" : "1",
 		"app_name" : "test",
 		"app_key" : "22222222"
-
-	}
+        }
 ]
 
 respones 
